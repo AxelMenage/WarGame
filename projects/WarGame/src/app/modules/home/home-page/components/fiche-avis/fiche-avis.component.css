@@ -1,0 +1,66 @@
+.card-header{
+  font-size: 16px;
+}
+
+.fiche-lot-card{
+  border: 1px solid lightgrey;
+  font-size: 14px;
+  margin: 10px 0px;
+}
+
+.fiche-lot-adresse{
+  font-weight: 600;
+  margin: 20px 0px;
+}
+
+.fiche-lot-utilisateur-import{
+  margin: 10px 0px;
+  font-style: italic;
+  font-size: 12px;
+}
+
+.ation-cadastre-icons i{
+  margin: 0px 10px;
+}
+
+.pointer{
+  cursor: pointer;
+}
+
+.subtitle{
+  font-size: 15px;
+}
+
+.max-height-caract{
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.btn {
+  border-radius:5px;
+  margin:0 5px;
+}
+
+.import-text{
+  position: absolute;
+  bottom: 0;
+}
+
+.table.table-striped td {
+  padding: 2px;
+}
+
+.btn.btn-doc{
+  white-space: normal !important;
+  word-wrap: break-word;
+  margin: 5px 0px;
+}
+
+ul.ul-doc{
+  padding-left: 10px;
+  list-style-type: none;
+}
+
+.cursor-pointer{
+  cursor: pointer;
+}

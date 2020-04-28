@@ -1,0 +1,121 @@
+<div class="card-synthese">
+  <div class="card-synthese-header">
+    <div class="col-md-12">
+      Société
+      <span class="card-synthese-title m-l-20">
+        {{ avisSynthese.nom }}
+      </span>
+    </div>
+  </div>
+  <div class="card-synthese-body">
+    <div class="row card-synthese-top">
+      <div class="col-md-9">
+        <hr />
+        <div class="row">
+          <div class="col-md-5">
+            <div class="row">
+              <div class="col-md-8">Nb d'Avis</div>
+              <div class="col-md-4">
+                <span
+                  class="synthese-data"
+                  (click)="onClickDetail(avisSynthese.id)"
+                  >{{avisSynthese.nombreAvis}}</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="row">
+              <div class="col-md-6">Montant</div>
+              <div class="col-md-6">
+                <span class="synthese-data-2">{{avisSynthese.montant ? avisSynthese.montant : 0}} €</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3"></div>
+        </div>
+        <div class="row">
+          <div class="col-md-5">
+            <div class="row">
+              <div class="col-md-8">Avis importés avec erreur</div>
+              <div class="col-md-4">
+                <span
+                  class="synthese-data"
+                  (click)="onClickDetail(avisSynthese.id, avisFilters.erreur)"
+                  >{{avisSynthese.nombreAvisErreur}}</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4"></div>
+          <div class="col-md-3"></div>
+        </div>
+        <div class="row">
+          <div class="col-md-5">
+            <div class="row">
+              <div class="col-md-8">Avis en écart avec le calcul théorique</div>
+              <div class="col-md-4">
+                <span
+                  class="synthese-data"
+                  (click)="onClickDetail(avisSynthese.id, avisFilters.ecart)"
+                  >{{avisSynthese.avisEcart}}</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4"></div>
+          <div class="col-md-3"></div>
+        </div>
+        <div class="row">
+          <div class="col-md-5">
+            <div class="row">
+              <div class="col-md-8">A régulariser</div>
+              <div class="col-md-4">
+                <span
+                  class="synthese-data"
+                  (click)="
+                    onClickDetail(avisSynthese.id, avisFilters.regulariser)
+                  "
+                  >{{avisSynthese.regulariser}}</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4"></div>
+          <div class="col-md-3"></div>
+        </div>
+        <div class="row">
+          <div class="col-md-5">
+            <div class="row">
+              <div class="col-md-8">En litige</div>
+              <div class="col-md-4">
+                <span
+                  class="synthese-data"
+                  (click)="onClickDetail(avisSynthese.id, avisFilters.litige)"
+                  >{{avisSynthese.litige}}</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4"></div>
+          <div class="col-md-3"></div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="button-div">
+          <div class="wrapper-div">
+            <span *ngIf="actionImportPermitted">
+              <button
+                class="btn btn-warning m-r-10"
+                (click)="onClickImport(avisSynthese.id)"
+              >
+                <i class="icon-cloud-upload"></i>
+              </button>
+              <span class="import-text">Mettre à jour / Importer les avis</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

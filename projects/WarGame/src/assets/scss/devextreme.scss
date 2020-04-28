@@ -1,0 +1,14 @@
+.dx-datagrid-rowsview .dx-row > td.dx-master-detail-cell{
+  padding: 10px;
+  padding-left: 0px;
+}
+
+#patrimoineGridContainer .dx-scrollable-content, #cadastreGridContainer .dx-scrollable-content, #gridContainer .dx-scrollable-content, #tauxGridContainer .dx-scrollable-content, #avisGridContainer .dx-scrollable-content{
+  padding-bottom: 12px;
+}
+
+#patrimoineGridContainer .dx-datagrid-rowsview .dx-row.dx-data-row:hover > td, #cadastreGridContainer .dx-datagrid-rowsview .dx-row.dx-data-row:hover > td, #avisGridContainer .dx-datagrid-rowsview .dx-row.dx-data-row:hover{
+  background-color: lightgrey;
+  color: #333;
+  cursor: pointer;
+}

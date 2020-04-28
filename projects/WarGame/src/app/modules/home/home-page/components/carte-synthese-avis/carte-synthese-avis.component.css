@@ -1,0 +1,45 @@
+.button-div {
+  height: 100%;
+  display: table;
+width: 100%;
+}
+.wrapper-div {
+  vertical-align: middle;
+  display: table-cell;
+}
+
+.card-synthese{
+  padding: 20px;
+  border: 1px solid lightgrey;
+  margin: 20px 0px;
+  font-size: 16px;
+}
+
+.card-synthese-title{
+  font-size: 24px;
+}
+
+.card-synthese-body .card-synthese-top > .col-md-9 > .row {
+  margin: 12px 0px;
+}
+
+.card-synthese-body .card-synthese-bottom > .col-12 > .row {
+  margin: 5px 0px;
+}
+
+.synthese-data{
+  font-size: 18px;
+  margin-left: 20px;
+  text-decoration: underline;
+  color: #2962FF;
+  cursor: pointer;
+}
+
+.synthese-data-2{
+  font-size: 18px;
+  margin-left: 20px;
+}
+
+.import-text{
+  font-size:12px;
+}

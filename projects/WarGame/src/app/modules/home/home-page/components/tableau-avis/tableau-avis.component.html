@@ -1,0 +1,79 @@
+<div *ngIf="loading">
+    Chargement des avis... <app-waiter></app-waiter>
+  </div>
+  <div class="row m-t-40" *ngIf="dernierImport">
+    <div class="col-md-12">
+      <p>Date dernier import : {{dernierImport.dateCreation | date:'dd/MM/yyy HH:mm'}}, état : {{dernierImport.etatImportNom}}</p>
+      <button *ngIf="dernierImport" class="btn btn-danger errors" (click)="onClickExportRapport()">Rapport d'erreurs</button>
+    </div>
+  </div>
+  <div class="row m-t-20" *ngIf="checkedAvis.length > 0 && currentUser.roleId !== rolesEnum.utilisateur">
+    <div class="col-md-12">
+      <button class="export btn btn-danger" (click)="onClickDeleteMultiple()"><i class="icon-trash m-r-10"></i>Supprimer la sélection</button>
+      <app-waiter class="m-l-10" *ngIf="actionLoading"></app-waiter>
+    </div>
+  </div>
+    <dx-data-grid #dataGrid id="avisGridContainer" [dataSource]="usedDataSource"
+      [columnAutoWidth]="true" [allowColumnReordering]="true" [showBorders]="true" [masterDetail]="{ enabled: (currentAvisFilter === avisFilterEnum.erreur ? true : false), template: 'detail' }"
+      (onToolbarPreparing)="onToolbarPreparing($event)"
+      (onCellClick)="onCellClick($event)"
+      (onContentReady)="onContentReady($event)"
+      (onSelectionChanged)="onSelectionChanged($event)"
+      [remoteOperations]="true">
+      <dxo-filter-row
+      [visible]="true"
+      applyFilter="auto"></dxo-filter-row>
+      <dxo-column-chooser [enabled]="true" mode="select" [allowSearch]="true" [height]="350" [width]="300"></dxo-column-chooser>
+      <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter>
+      <dxo-group-panel [visible]="true"></dxo-group-panel>
+      <dxo-grouping [autoExpandAll]="true"></dxo-grouping>
+      <dxo-paging [pageSize]="100"></dxo-paging>
+      <dxo-filter-panel [visible]="true"></dxo-filter-panel>
+      <dxo-pager
+          [showPageSizeSelector]="true"
+          [allowedPageSizes]="[100, 300, 500, 1000, rowsCount]"
+          [showInfo]="true">
+      </dxo-pager>
+      <dxo-selection *ngIf="currentUser.roleId !== rolesEnum.utilisateur"
+      selectAllMode="allPages"
+      showCheckBoxesMode="onClick"
+      mode="multiple"
+      ></dxo-selection>
+      <dxi-column dataField="reference" caption="Référence" sortOrder="asc" tempcellTemplate="refTemplate"late></dxi-column>
+      <dxi-column *ngFor="let column of columns" [dataField]="column.champModel" [caption]="column.label" [visible]="column.visible" [dataType]="column.type === 'date' ? 'date' : ''" [format]="column.type === 'date' ? 'dd/MM/yyyy' : ''"
+      [allowSearch]="column.allowSearch" [allowHeaderFiltering]="column.allowHeaderFiltering"></dxi-column>
+      <dxi-column *ngIf="currentUser.roleId === rolesEnum.superAdministrateur" dataField="importId" caption="PDF" [allowHeaderFiltering]="false" [allowSearch]="false" cellTemplate="pdfTemplate"></dxi-column>
+
+      <div *dxTemplate="let cell of 'refTemplate'">
+        <i *ngIf="cell.data.erreurbloquante" title="Cette ligne possède des erreurs" class="text-danger icon-close m-r-10"></i>
+        <b>{{cell.value}}</b>
+    </div>
+
+    <div *dxTemplate="let rowDetail of 'detail'">
+      <div class="row m-t-10 erreurs-div">
+          <div class="col-md-4 border-right">
+              {{ rowDetail.data.dateCreation ? 'Créé le : ' + (rowDetail.data.dateCreation | date: "dd/MM/yyy HH:mm") : ''}}<br>
+              {{rowDetail.data.dateMisAJour ? 'Mis à jour le : ' + (rowDetail.data.dateMisAJour | date: "dd/MM/yyy HH:mm") : ''}}
+          </div>
+        <div class="col-md-8 text-danger" *ngIf="rowDetail.data.erreurbloquante">
+            <p class="detail-error-title">Erreurs</p>
+            <p class="formatted" [innerHTML]="rowDetail.data.erreurbloquante"></p>
+        </div>
+      </div>
+
+    </div>
+
+      <div *dxTemplate="let cell of 'pdfTemplate'">
+          <button *ngIf="cell.data.fileName && cell.data.importId && cell.data.remoteId" title="Télécharger l'avis" class="btn btn-default btn-xs text-center m-l-5 m-r-5" (click)="onClickExportPDf(cell.data.importId, cell.data.reference)"><i class="icon-doc"></i></button>
+      </div>
+
+      <div *dxTemplate="let data of 'campagneTemplate'">
+        <button *ngIf="!exportLoading; else exportWaiter" title="Télécharger les avis" class="btn btn-default d-inline-block text-center m-l-5 m-r-5" (click)="onClickExport()"><i class="icon-cloud-download"></i></button>
+        <ng-template #exportWaiter>
+          <span class="d-inline-block text-center m-l-5 m-r-5"><app-waiter></app-waiter></span>
+        </ng-template>
+        <h4 class="d-inline-block m-b-0 align-bottom">Campagne {{currentCampagne}}</h4>
+      </div>
+
+    </dx-data-grid>
+

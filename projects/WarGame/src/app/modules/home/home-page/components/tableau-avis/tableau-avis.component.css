@@ -1,0 +1,38 @@
+.btn {
+  border-radius:5px;
+}
+
+.dx-datagrid-headers {
+  color: #ffffff !important;
+  background-color: #92acdb !important;
+}
+
+.erreurs-div{
+  max-width: 900px;
+  white-space: initial;
+}
+
+p.detail-error-title{
+  margin-bottom: 5px;
+  text-decoration: underline;
+}
+
+.export.btn{
+  color: white;
+}
+
+.pointer{
+  cursor: pointer;
+}
+
+.formatted {
+  white-space: pre-wrap;
+}
+
+::ng-deep #avisGridContainer {
+  height: 700px;
+}
+
+.col-md-6.border-right {
+  border-right: 1px solid lightgrey;
+}
