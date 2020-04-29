@@ -13,6 +13,11 @@ export const Approutes: Routes = [
           path: 'home',
           //canActivate: [AuthGuard],
           loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)
+        },
+        {
+          path: 'decks',
+          //canActivate: [AuthGuard],
+          loadChildren: () => import('./modules/deck/deck.module').then(m => m.DeckModule)
         }
       ]
     },

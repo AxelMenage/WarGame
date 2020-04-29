@@ -1,0 +1,28 @@
+<div class="row mt-3">
+    <div class="col-md-12">
+        <label class="mr-2">
+            <input type="radio" name="mode" value="0" checked (click)="onModeChange(0)">
+            <img src="http://placehold.it/40x60/0bf/fff&text=A">
+        </label>
+        <label class="mr-3">
+            <input type="radio" name="mode" value="1" (click)="onModeChange(1)">
+            <img src="http://placehold.it/40x60/b0f/fff&text=B">
+        </label>
+        <label>{{ modeName }}</label>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col-md-12">
+        <button type="button" class="btn btn-lg btn-outline-primary w-100">Partie rapide</button>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col-md-12">
+        <button type="button" class="btn btn-lg btn-outline-primary w-100">Entraînement</button>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col-md-12">
+        <button type="button" class="btn btn-lg btn-outline-primary w-100">Partie contre un ami</button>
+    </div>
+</div>
