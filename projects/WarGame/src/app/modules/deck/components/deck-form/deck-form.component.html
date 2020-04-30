@@ -1,0 +1,36 @@
+<form [formGroup]="deckForm" (ngSubmit)="onSubmit()" *ngIf="displayForm; else waitingBlock">
+  
+    <label>
+      Name :
+      <input type="text" formControlName="name">
+    </label>
+  
+    <label>
+      Shots:
+      <input type="number" min="1" formControlName="shot">
+    </label>
+    <label>
+        Bombs:
+        <input type="number" min="0" formControlName="bomb">
+      </label>
+      <label>
+        Scans:
+        <input type="number" min="0" formControlName="scan">
+      </label>
+      <label>
+        Repairs:
+        <input type="number" min="0" formControlName="repair">
+      </label>
+      <label>
+        Camouflages:
+        <input type="number" min="0" formControlName="camouflage">
+      </label>
+      <label>
+        Shields:
+        <input type="number" min="0" formControlName="shield">
+      </label>
+      <button class="btn btn-success" type="submit">
+        <i class="icon-check"></i> Enregistrer
+      </button>
+  </form>
+  <ng-template #waitingBlock>Waiting action...</ng-template>

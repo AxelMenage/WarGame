@@ -1,1 +1,18 @@
-<p>deck-list works!</p>
+<div class="row mb-2">
+    <div class="col-md-12">
+        <button type="button" class="btn btn-lg btn-outline-secondary w-100" (click)="onDeckClicked(0)">Nouveau +
+        </button>
+    </div>
+</div>
+<div *ngFor="let deck of deckList; trackBy: trackByFunction" class="row mt-1">
+    <div class="col-md-12">
+        <div class="card card-hover border" (click)="onDeckClicked(deck.id)">
+          <div class="card-body">
+              <div class="row">
+                <div class="col-10">{{deck.name}}</div>
+                <div class="col-2 text-right">></div>
+              </div>
+          </div>
+        </div>
+      </div>
+</div>

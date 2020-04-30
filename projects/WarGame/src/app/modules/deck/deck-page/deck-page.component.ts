@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeckPageComponent implements OnInit {
 
+  public clickedDeckId: number;
+
+  displayDeckForm: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  childDeckClicked(id: number) {
+    this.clickedDeckId = id;
+  }
+
 
 }

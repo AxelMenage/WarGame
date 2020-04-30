@@ -1,1 +1,28 @@
-<p>deck-page works!</p>
+<div class="row">
+    <div class="col-md-12">
+        <a [routerLink]="['/home']">
+            <button type="button" class="btn btn-lg btn-outline-secondary">< Retour</button>
+        </a>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title text-center">Liste des decks</h3>
+
+          <app-deck-list (deckClickedEmitter)="childDeckClicked($event)"></app-deck-list>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title text-center">Jouer</h3>
+            <app-deck-form [deckId]="clickedDeckId"></app-deck-form>
+          </div>
+        </div>
+      </div>
+  </div>
+  
