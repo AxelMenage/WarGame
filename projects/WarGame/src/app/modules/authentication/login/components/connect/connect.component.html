@@ -1,0 +1,45 @@
+
+<div class="logo">
+    <h5 class="font-medium m-b-20" style="margin-top:15px; font-size:24px">Connect to WarGame</h5>
+</div>
+<span *ngIf="loading">
+  <br>
+  <div class="text-center">
+    <app-waiter></app-waiter>
+  </div>
+  <br>
+</span>
+<!-- Form -->
+<div class="row">
+    <div class="col-12">
+        <form class="form-horizontal m-t-20" id="loginform" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="form-error">{{error}}</div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1" style="border-radius: 5px 0 0 5px;"><i class="icon-user"></i></span>
+                </div>
+                <input type="text" class="form-control form-control-lg" placeholder="Nickname" formControlName="nickname" aria-label="Nickname" aria-describedby="basic-addon1" style="border-radius: 0 5px 5px 0;">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon2" style="border-radius: 10px 0 0 10px;"><i class="icon-lock"></i></span>
+                </div>
+                <input type="text" class="form-control form-control-lg" type="password" formControlName="password" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" style="border-radius: 0 5px 5px 0;">
+            </div>
+            <div class="form-group row">
+                <div class="col-md-12">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" formControlName="rememberme" id="customCheck1">
+                        <label class="custom-control-label" for="customCheck1">Remember me</label>
+                        <a (click)="switchToRecover(true)" href="javascript:void(0)" id="to-recover" class="text-dark float-right"><i class="fa fa-lock m-r-5"></i>Forgot password ?</a>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group text-center">
+                <div class="col-xs-12 p-b-20">
+                    <button class="btn btn-block btn-lg btn-info" style="border-radius:5px; color:#fff;" type="submit">Connection</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

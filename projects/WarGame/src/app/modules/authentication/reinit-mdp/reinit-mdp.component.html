@@ -1,0 +1,12 @@
+<div class="auth-wrapper d-flex no-block justify-content-center align-items-center" style="background:url(assets/images/wim/login-register.png) no-repeat center center;">
+    <div class="auth-box on-sidebar" style="font-family:Lato!important;padding:30px 55px">
+        <div id="resetform">
+            <div class="logo">
+                <h5 class="font-medium m-b-20" style="margin-top:15px; font-size:24px">Réinitialiser mot de passe</h5>
+                <span>{{message}}</span>
+            </div>
+            <app-form-reinit-mdp></app-form-reinit-mdp>
+            <a [routerLink]="['/authentification']"><i class="fa fa-arrow-left m-t-20"></i></a>
+        </div>
+    </div>
+</div>

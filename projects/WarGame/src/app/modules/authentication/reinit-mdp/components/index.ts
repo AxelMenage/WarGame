@@ -1,0 +1,1 @@
+export * from "./form-reinit-mdp/form-reinit-mdp.component"

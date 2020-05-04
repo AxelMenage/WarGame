@@ -11,6 +11,7 @@ import { Approutes } from './app-routing.module';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SpinnerComponent } from './modules/shared/spinner.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { SpinnerComponent } from './modules/shared/spinner.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     NgbModule,
     PerfectScrollbarModule,
     RouterModule.forRoot(Approutes, { useHash: false }),

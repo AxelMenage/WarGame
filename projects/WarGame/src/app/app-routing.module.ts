@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { LayoutBlankComponent } from './layouts/layout-blank/layout-blank.component';
 import { LayoutFullComponent } from './layouts/layout-full/layout-full.component';
 import { NotFoundComponent } from 'admin-lib';
+import { AuthGuard } from './core/helpers/guards';
 
 export const Approutes: Routes = [
     {
@@ -11,12 +12,12 @@ export const Approutes: Routes = [
         { path: '', redirectTo: '/home', pathMatch: 'full' },
         {
           path: 'home',
-          //canActivate: [AuthGuard],
+          canActivate: [AuthGuard],
           loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)
         },
         {
           path: 'decks',
-          //canActivate: [AuthGuard],
+          canActivate: [AuthGuard],
           loadChildren: () => import('./modules/deck/deck.module').then(m => m.DeckModule)
         }
       ]
@@ -27,8 +28,8 @@ export const Approutes: Routes = [
       children: [
         {
           path: 'login',
-          loadChildren:
-            './modules/authentification/authentification.module#AuthentificationModule'
+          canActivate: [AuthGuard],
+          loadChildren: () => import('./modules/authentication/authentication.module').then(m => m.AuthenticationModule)
         },
         {
           path: '404',

@@ -1,0 +1,10 @@
+<div class="auth-wrapper d-flex no-block justify-content-center align-items-center" style="background:url(assets/images/wim/login-register.png) no-repeat center center;">
+    <div class="auth-box on-sidebar" style="font-family:Lato!important;padding:30px 55px">
+        <div id="loginform" [ngClass]="{'d-none': recoverform}">
+            <app-connect (displayConnection)="onDisplayConnection($event)"></app-connect>
+        </div>
+        <div id="recoverform" [ngClass]="{'d-block': recoverform}">
+            
+        </div>
+    </div>
+</div>

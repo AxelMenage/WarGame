@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import { AuthenticationService } from '../../../core/api/services';
 
 @Component({
   selector: 'app-header',
@@ -34,13 +35,13 @@ export class HeaderComponent implements OnInit {
     }
   ];
 
-  constructor() { }
+  constructor(private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
   }
 
   logOut() {
-    
+    this.authenticationService.logout();
   }
 
 }

@@ -4,5 +4,7 @@ export enum Card {
     scan,
     repair,
     camouflage,
-    shield
+    shield,
+    reload,
+    multishot
 }
