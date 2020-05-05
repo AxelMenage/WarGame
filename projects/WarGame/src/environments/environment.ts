@@ -12,4 +12,5 @@ export const environment = {
   authenticationUrl: 'user/authenticate',
   forgotPasswordUrl: 'user/forgotpassword',
   reinitPasswordUrl: 'user/reinitpassword',
+  getUserStatsUrl: 'user/stats',
 };

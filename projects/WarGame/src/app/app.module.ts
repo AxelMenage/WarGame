@@ -11,7 +11,8 @@ import { Approutes } from './app-routing.module';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SpinnerComponent } from './modules/shared/spinner.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtInterceptor } from './core/helpers/interceptors';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,13 @@ import { HttpClientModule } from '@angular/common/http';
     PerfectScrollbarModule,
     RouterModule.forRoot(Approutes, { useHash: false }),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

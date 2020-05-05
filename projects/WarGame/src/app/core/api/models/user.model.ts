@@ -1,9 +1,8 @@
 export class User {
     id: number;
-    username: string;
-    mail: string;
-    firstName: string;
-    lastName: string;
+    nickname: string;
+    email: string;
+    points: number;
     token?: string;
 
     public saveLocal() {

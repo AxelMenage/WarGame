@@ -1,62 +1,64 @@
-<div class="card card-hover">
-    <div class="card-body">
-        <div class="row">
-            <div class="col-12">
-                <div class="d-flex no-block align-items-center">
-                    <div>
-                        <h3 class="displayInlineBlock">0000 victoires</h3>
-                    </div>
-                    <div class="ml-auto">
-                        <span class="text-success display-6">
-                            <i class="fa fa-thumbs-up"></i>
-                        </span>
+<div *ngIf="userStats">
+    <div class="card card-hover">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12">
+                    <div class="d-flex no-block align-items-center">
+                        <div>
+                            <h3 class="displayInlineBlock">{{userStats.victories}}</h3>
+                        </div>
+                        <div class="ml-auto">
+                            <span class="text-success display-6">
+                                <i class="fa fa-thumbs-up"></i>
+                            </span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-12">
-                <div class="progress">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 99.4%; height: 6px;" aria-valuenow="99.4" aria-valuemin="0"
-                        aria-valuemax="100"></div>
+                <div class="col-12">
+                    <div class="progress">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 99.4%; height: 6px;" aria-valuenow="99.4" aria-valuemin="0"
+                            aria-valuemax="100"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class="card card-hover">
-    <div class="card-body">
-        <div class="row">
-            <div class="col-12">
-                <ngx-charts-pie-chart
-                [scheme]="colorScheme"
-                [results]="single"
-                [gradient]="gradient"
-                [labels]="showLabels"
-                [doughnut]="isDoughnut"
-                >
-                </ngx-charts-pie-chart>
+    <div class="card card-hover">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12">
+                    <ngx-charts-pie-chart
+                    [scheme]="colorScheme"
+                    [results]="single"
+                    [gradient]="gradient"
+                    [labels]="showLabels"
+                    [doughnut]="isDoughnut"
+                    >
+                    </ngx-charts-pie-chart>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="card card-hover">
-    <div class="card-body">
-        <div class="row">
-            <div class="col-12">
-                <div class="d-flex no-block align-items-center">
-                    <div>
-                        <h3 class="displayInlineBlock">0000 défaites</h3>
-                    </div>
-                    <div class="ml-auto">
-                        <span class="text-danger display-6">
-                            <i class="fa fa-thumbs-down"></i>
-                        </span>
+    <div class="card card-hover">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12">
+                    <div class="d-flex no-block align-items-center">
+                        <div>
+                            <h3 class="displayInlineBlock">{{userStats.defeats}}</h3>
+                        </div>
+                        <div class="ml-auto">
+                            <span class="text-danger display-6">
+                                <i class="fa fa-thumbs-down"></i>
+                            </span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-12">
-                <div class="progress">
-                    <div class="progress-bar bg-danger" role="progressbar" style="width: 99.4%; height: 6px;" aria-valuenow="99.4" aria-valuemin="0"
-                        aria-valuemax="100"></div>
+                <div class="col-12">
+                    <div class="progress">
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: 99.4%; height: 6px;" aria-valuenow="99.4" aria-valuemin="0"
+                            aria-valuemax="100"></div>
+                    </div>
                 </div>
             </div>
         </div>
