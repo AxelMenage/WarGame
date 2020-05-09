@@ -1,11 +1,11 @@
 <div class="row mt-3">
     <div class="col-md-12">
         <label class="mr-2">
-            <input type="radio" name="mode" value="0" checked (click)="onModeChange(0)">
+            <input type="radio" name="mode" value="0" checked (click)="onModeChange(1)">
             <img src="http://placehold.it/40x60/0bf/fff&text=A">
         </label>
         <label class="mr-3">
-            <input type="radio" name="mode" value="1" (click)="onModeChange(1)">
+            <input type="radio" name="mode" value="1" (click)="onModeChange(2)">
             <img src="http://placehold.it/40x60/b0f/fff&text=B">
         </label>
         <label>{{ modeName }}</label>
@@ -13,16 +13,40 @@
 </div>
 <div class="row mt-3">
     <div class="col-md-12">
-        <button type="button" class="btn btn-lg btn-outline-primary w-100">Partie rapide</button>
+        <button type="button" class="btn btn-lg btn-outline-primary w-100">Quick game</button>
     </div>
 </div>
 <div class="row mt-3">
     <div class="col-md-12">
-        <button type="button" class="btn btn-lg btn-outline-primary w-100">Entraînement</button>
+        <button type="button" class="btn btn-lg btn-outline-primary w-100">Training</button>
     </div>
 </div>
 <div class="row mt-3">
     <div class="col-md-12">
-        <button type="button" class="btn btn-lg btn-outline-primary w-100">Partie contre un ami</button>
+        <button type="button" class="btn btn-lg btn-outline-primary w-100" (click)="openModal()">Game against friend</button>
     </div>
 </div>
+
+<ng-template #modalcontent let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Choose your opponent</h4>
+      <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <span *ngIf="friendsLoading">
+        <br>
+        <div class="text-center">
+            <app-waiter></app-waiter>
+        </div>
+        <br>
+    </span>
+    <table class="table table-bordered" *ngIf="friends">
+        <tbody>
+          <tr *ngFor="let friend of friends">
+            <td>{{(friend.id1 == currentUser.id) ? friend.nickname2 : friend.nickname1}}</td>
+            <td><button class="btn btn-success" (click)="createGame(friend.id1, friend.id2)">Choose</button></td>
+          </tr>
+        </tbody>
+      </table>
+  </ng-template>

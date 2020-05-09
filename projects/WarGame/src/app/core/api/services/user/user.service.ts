@@ -10,5 +10,5 @@ export class UserService {
     getStatsByUser(id: number) {
         return this.http.get<UserStatsView>(environment.apiUrl + environment.getUserStatsUrl + "/" + id)
         .toPromise();
-      }
+    }
 }

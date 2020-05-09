@@ -69,8 +69,8 @@
                     <img src="assets/images/icons/user_64.png" alt="user" class="img-circle" width="60">
                 </div>
                 <div class="m-l-10">
-                    <h4 class="m-b-0">Prénom nom</h4>
-                    <p class=" m-b-0">Mail</p>
+                    <h4 class="m-b-0">{{currentUser.nickname}}</h4>
+                    <p class=" m-b-0">{{currentUser.email}}</p>
                 </div>
             </div>
             <a class="dropdown-item" [routerLink]="['/utilisateurs/profil']">

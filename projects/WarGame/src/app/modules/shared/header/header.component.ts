@@ -1,6 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { AuthenticationService } from '../../../core/api/services';
+import { User } from '../../../core/api/models';
+import { getCurrentUser } from '../../../core/helpers/generic';
 
 @Component({
   selector: 'app-header',
@@ -8,8 +10,12 @@ import { AuthenticationService } from '../../../core/api/services';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+
   @Output() toggleSidebar = new EventEmitter<void>();
   public config: PerfectScrollbarConfigInterface = {};
+
+  currentUser: User;
+
   // This is for Notifications
   notifications: Object[] = [
     {
@@ -38,6 +44,7 @@ export class HeaderComponent implements OnInit {
   constructor(private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
+    this.currentUser = getCurrentUser();
   }
 
   logOut() {

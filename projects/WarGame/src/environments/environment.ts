@@ -13,4 +13,17 @@ export const environment = {
   forgotPasswordUrl: 'user/forgotpassword',
   reinitPasswordUrl: 'user/reinitpassword',
   getUserStatsUrl: 'user/stats',
+
+  // --- Friends ---
+  friendsUrl: 'friend',
+
+  // --- Games ---
+  gamesUrl: 'game',
+  getGamesUrl: 'game/getgames',
+  changeGameStateUrl: 'game/changestate',
+  canAccessGameUrl: 'game/canaccess',
+
+  // --- Ships ---
+  shipsUrl: 'ship',
+  allShipsUrl: 'ship/all',
 };

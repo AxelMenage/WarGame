@@ -1,3 +1,6 @@
+export * from './friend.model';
+export * from './game.model';
+export * from './ship.model';
 export * from './token.model';
 export * from './user.model';
 export * from './userStats.model';

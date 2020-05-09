@@ -1,0 +1,55 @@
+<span *ngIf="loading">
+    <br>
+    <div class="text-center">
+        <app-waiter></app-waiter>
+    </div>
+    <br>
+</span>
+<div class="row">
+    <div class="card col-md-4" *ngIf="ships && ships.length > 0">
+        <h3 class="displayInlineBlock">Ships</h3>
+        <div class="card-body">
+            <div class="row" *ngFor="let ship of ships; let i = index">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4>{{ship.name}}</h4>
+                            <p>{{ship.sizeX}} x {{ship.sizeY}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <img [src]="'assets/images/boats/'+ship.name+'.jpg'" class="mw-100"/>
+                        </div>
+                        <div class="col-md-4">
+                            <table [class]="'ship-sizes ship'+ i">
+                                <tr *ngFor="let y of counter(ship.sizeY)">
+                                    <td *ngFor="let x of counter(ship.sizeX)"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-bordered placement-grid">
+                    <tr><td></td><th *ngFor="let header-column of counter(10); let i = index">{{i+1}}</th></tr>
+                    <tr *ngFor="let row of counter(10); let j = index">
+                        <th>{{getLetter(j)}}</th>
+                        <td *ngFor="let column of counter(10)"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

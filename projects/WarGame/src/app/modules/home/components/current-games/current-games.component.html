@@ -1,0 +1,46 @@
+<span *ngIf="loading">
+    <br>
+    <div class="text-center">
+        <app-waiter></app-waiter>
+    </div>
+    <br>
+</span>
+<div *ngIf="currentGames.length > 0">
+    <h3 class="displayInlineBlock">Current games</h3>
+    <div class="card" *ngFor="let currentGame of currentGames">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-8">
+                    Opponent : {{currentGame.player1Id == currentUser.id ? currentGame.player1Nickname : currentGame.player2Nickname}}
+                </div>
+                <div class="col-4"><a [routerLink]="['/game/']" [queryParams]="{id: currentGame.id}"><button class="btn btn-success">GO</button></a></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="waitingGames.length > 0">
+    <h3 class="displayInlineBlock">Waiting games</h3>
+    <div class="card" *ngFor="let waitingGame of waitingGames; let i = index">
+        <div class="card-body">
+            <div class="row" *ngIf="waitingGame.player1Id == currentUser.id; else otherWaitingBlock">
+                <div class="col-12">
+                    Opponent : {{ waitingGame.player2Nickname }}
+                </div>
+                <div class="col-12">
+                    Waiting for your opponent's response...
+                </div>
+            </div>
+            <ng-template #otherWaitingBlock>
+                <div class="row">
+                    <div class="col-12">
+                        Opponent : {{ waitingGame.player1Nickname }}
+                    </div>
+                    <div class="col-12">
+                        <button class="btn btn-success" (click)="onClickAccept(waitingGame.id, i)">Accept</button>
+                        <button class="btn btn-danger" (click)="onClickDecline(waitingGame.id, i)">Decline</button>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>

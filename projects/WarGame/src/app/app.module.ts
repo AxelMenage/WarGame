@@ -13,6 +13,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SpinnerComponent } from './modules/shared/spinner.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './core/helpers/interceptors';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { JwtInterceptor } from './core/helpers/interceptors';
     NgbModule,
     PerfectScrollbarModule,
     RouterModule.forRoot(Approutes, { useHash: false }),
+    ToastrModule.forRoot()
   ],
   providers: [
     {

@@ -1,0 +1,8 @@
+<div class="row">
+    <div class="col-md-12">
+        <app-placement *ngIf="game && game.stateId == gameState.waitingPlacements"></app-placement>
+        <app-main-screen *ngIf="game && game.stateId == gameState.inProgress"></app-main-screen>
+    </div>
+</div>
+  
+

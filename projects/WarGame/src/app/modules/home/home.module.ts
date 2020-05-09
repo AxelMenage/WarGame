@@ -10,15 +10,21 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { DeckComponent } from './components/deck/deck.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor, ErrorInterceptor } from '../../core/helpers/interceptors';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AdminLibModule } from 'admin-lib';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CurrentGamesComponent } from './components/current-games/current-games.component';
 
 
 
 @NgModule({
-  declarations: [HomePageComponent, StatsComponent, PlayComponent, HistoComponent, DeckComponent],
+  declarations: [HomePageComponent, StatsComponent, PlayComponent, HistoComponent, DeckComponent, CurrentGamesComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(HomeRoutes),
-    NgxChartsModule
+    NgxChartsModule,
+    NgbModule,
+    AdminLibModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

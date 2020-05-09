@@ -10,6 +10,7 @@ import { User, UserStatsView } from 'projects/WarGame/src/app/core/api/models';
 export class StatsComponent implements OnInit{
 
   single: any[];
+  statsLoading = true;
 
   // options
   gradient: boolean = true;
@@ -42,6 +43,7 @@ export class StatsComponent implements OnInit{
             "value": onsuccess.defeats
           }
         ];
+        this.statsLoading = false;
       }
     );
   }

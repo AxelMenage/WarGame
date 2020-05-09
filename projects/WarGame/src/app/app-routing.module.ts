@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { LayoutBlankComponent } from './layouts/layout-blank/layout-blank.component';
 import { LayoutFullComponent } from './layouts/layout-full/layout-full.component';
 import { NotFoundComponent } from 'admin-lib';
-import { AuthGuard } from './core/helpers/guards';
+import { AuthGuard, GameGuard } from './core/helpers/guards';
 
 export const Approutes: Routes = [
     {
@@ -19,6 +19,11 @@ export const Approutes: Routes = [
           path: 'decks',
           canActivate: [AuthGuard],
           loadChildren: () => import('./modules/deck/deck.module').then(m => m.DeckModule)
+        },
+        {
+          path: 'game',
+          canActivate: [AuthGuard, GameGuard],
+          loadChildren: () => import('./modules/game/game.module').then(m => m.GameModule)
         }
       ]
     },

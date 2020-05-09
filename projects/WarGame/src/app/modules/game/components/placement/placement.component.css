@@ -1,0 +1,22 @@
+.ship-sizes td{
+    width: 20px;
+    height: 20px;
+    border: 1px solid black;
+}
+
+.ship0{ background-color: #f57e42; }
+.ship1{ background-color: #ffdb3b; }
+.ship2{ background-color: #69e05e; }
+.ship3{ background-color: #5eb9e0; }
+.ship4{ background-color: #875ee0; }
+.ship5{ background-color: #e05e8b; }
+
+.placement-grid td, .placement-grid th{
+    width: 80px!important;
+    height: 80px!important;
+}
+
+.placement-grid th{
+    vertical-align: middle!important;
+    text-align: center!important;
+}
