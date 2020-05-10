@@ -22,11 +22,13 @@
                             <img [src]="'assets/images/boats/'+ship.name+'.jpg'" class="mw-100"/>
                         </div>
                         <div class="col-md-4">
-                            <table [class]="'ship-sizes ship'+ i">
+                            <table [class]="'ship-sizes ship'+ ship.id">
                                 <tr *ngFor="let y of counter(ship.sizeY)">
                                     <td *ngFor="let x of counter(ship.sizeX)"></td>
                                 </tr>
                             </table>
+                            <button class="btn mt-2 mr-2" [ngClass]="currentShip.id == ship.id ? 'btn-secondary' : 'btn-primary'" (click)="setCurrentShip(ship.id)">{{currentShip.id == ship.id ? 'Cancel' : 'Place'}}</button>
+                            <button class="btn btn-info" *ngIf="currentShip.id == ship.id" (click)="rotateCurrentShip()"><i class="fas fa-sync-alt"></i></button>
                         </div>
                     </div>
                     <div class="row">
@@ -45,7 +47,10 @@
                     <tr><td></td><th *ngFor="let header-column of counter(10); let i = index">{{i+1}}</th></tr>
                     <tr *ngFor="let row of counter(10); let j = index">
                         <th>{{getLetter(j)}}</th>
-                        <td *ngFor="let column of counter(10)"></td>
+                        <td *ngFor="let column of counter(10); let h = index" 
+                            [id]="'cell-'+j+'-'+h" 
+                            (mouseover)="displayShipEmplacement(j, h)" [ngClass]="coloredX.includes(h) && coloredY.includes(j) ? 'ship'+currentShip.id : ''">
+                        </td>
                     </tr>
                 </table>
             </div>
