@@ -25,7 +25,6 @@ export class DeckFormComponent implements OnChanges {
   constructor() { }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
     if(changes.deckId.currentValue != null){
       this.displayForm = true;
     }

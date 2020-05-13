@@ -27,8 +27,11 @@
                                     <td *ngFor="let x of counter(ship.sizeX)"></td>
                                 </tr>
                             </table>
-                            <button class="btn mt-2 mr-2" [ngClass]="currentShip.id == ship.id ? 'btn-secondary' : 'btn-primary'" (click)="setCurrentShip(ship.id)">{{currentShip.id == ship.id ? 'Cancel' : 'Place'}}</button>
+                            <button (click)="removeShipPositions(ship.id)" class="btn btn-danger" *ngIf="isPlacedShip(ship.id); else noPlaced">Remove</button>
+                            <ng-template #noPlaced>
+                                <button class="btn mt-2 mr-2" [ngClass]="currentShip.id == ship.id ? 'btn-secondary' : 'btn-primary'" (click)="setCurrentShip(ship.id)">{{currentShip.id == ship.id ? 'Cancel' : 'Place'}}</button>
                             <button class="btn btn-info" *ngIf="currentShip.id == ship.id" (click)="rotateCurrentShip()"><i class="fas fa-sync-alt"></i></button>
+                            </ng-template>
                         </div>
                     </div>
                     <div class="row">
@@ -49,7 +52,11 @@
                         <th>{{getLetter(j)}}</th>
                         <td *ngFor="let column of counter(10); let h = index" 
                             [id]="'cell-'+j+'-'+h" 
-                            (mouseover)="displayShipEmplacement(j, h)" [ngClass]="coloredX.includes(h) && coloredY.includes(j) ? 'ship'+currentShip.id : ''">
+                            (mouseover)="displayShipEmplacement(j, h)"
+                            (click)="validCurrentShipPlacement(j, h)"
+                            [ngClass]="coloredX.includes(h) && coloredY.includes(j) && !coordinatesInPositions(j, h) ? 'ship'+currentShip.id : ''"
+                            [ngClass]="coordinatesInPositions(j, h) ? 'placed-ship' : ''"
+                            >
                         </td>
                     </tr>
                 </table>
@@ -57,4 +64,20 @@
         </div>
     </div>
 </div>
+
+<ng-template #modalcontent let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">All ships are ready</h4>
+      <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <p class="text-center">Continue ?</p>
+        <div class="text-center">
+            <button class="btn btn-success mr-3" (click)="validateAllPositions()">YES</button>
+            <button class="btn btn-danger" (click)="closeModal()">NO</button>
+        </div>
+    </div>
+  </ng-template>
 

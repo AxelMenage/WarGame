@@ -1,5 +1,8 @@
-export class Position {
+export class ShipPosition {
+    gameId: number;
+    userId: number;
     shipId: number;
-    X: number;
-    Y: number;
+    coordX: number;
+    coordY: number;
+    touche: boolean;
 }

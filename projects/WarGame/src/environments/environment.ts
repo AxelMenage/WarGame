@@ -26,4 +26,8 @@ export const environment = {
   // --- Ships ---
   shipsUrl: 'ship',
   allShipsUrl: 'ship/all',
+
+  // --- Positions ---
+  positionsUrl: 'position',
+  getPositionByUserAndGameUrl: 'position/getbyuserandgame'
 };

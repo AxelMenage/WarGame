@@ -4,12 +4,14 @@
     border: 1px solid black;
 }
 
+.no-ship{background-color: white;}
 .ship1{ background-color: #f57e42; }
 .ship2{ background-color: #ffdb3b; }
 .ship3{ background-color: #69e05e; }
 .ship4{ background-color: #5eb9e0; }
 .ship5{ background-color: #875ee0; }
 .ship6{ background-color: #e05e8b; }
+.placed-ship{background-color: grey!important;}
 
 .placement-grid td, .placement-grid th{
     width: 80px!important;
@@ -19,4 +21,8 @@
 .placement-grid th{
     vertical-align: middle!important;
     text-align: center!important;
+}
+
+.placement-grid td{
+    cursor: pointer;
 }

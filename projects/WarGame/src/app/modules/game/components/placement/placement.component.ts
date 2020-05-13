@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ShipService } from 'projects/WarGame/src/app/core/api/services';
-import { Ship } from 'projects/WarGame/src/app/core/api/models';
-import { getLetterFromNumber } from 'projects/WarGame/src/app/core/helpers/generic';
+import { Component, OnInit, Input, ViewChild, EventEmitter, Output } from '@angular/core';
+import { ShipService, PositionService } from 'projects/WarGame/src/app/core/api/services';
+import { Ship, Game, ShipPosition, User } from 'projects/WarGame/src/app/core/api/models';
+import { getLetterFromNumber, getCurrentUser } from 'projects/WarGame/src/app/core/helpers/generic';
+import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-placement',
@@ -15,13 +16,24 @@ export class PlacementComponent implements OnInit {
   currentShip: Ship = new Ship();
   currentSizeX: number = 0;
   currentSizeY: number = 0;
-  positions: Position[] = [];
+  positions: ShipPosition[] = [];
   coloredX: number[] = [];
   coloredY: number[] = [];
+  placedShips: Ship[];
+  currentUser: User;
+
+  @Input() currentGame: Game;
+  @Output() gameEmitter = new EventEmitter<Game>();
+
+  modalReference: NgbModalRef;
+  @ViewChild('modalcontent') modalcontent;
   
-  constructor(private shipService: ShipService) { }
+  constructor(private modalService: NgbModal, 
+    private shipService: ShipService,
+    private positionService: PositionService) { }
 
   ngOnInit(): void {
+    this.currentUser = getCurrentUser();
     this.shipService.getAll().then(
       onsuccess => this.ships = onsuccess
     ).then(() => this.loading = false)
@@ -70,16 +82,81 @@ export class PlacementComponent implements OnInit {
 
   displayShipEmplacement(x: number, y:number){
     this.initColoredCells();
-    console.log("x:" + x + "y:" + y);
-    console.log("currentx:" + this.currentSizeX + "currenty:" + this.currentSizeY);
     for (let i = y; i < y + this.currentSizeX ; i++) {
       if(!this.coloredX.includes(i)) this.coloredX.push(i);
       for(let j = x; j < x + this.currentSizeY; j++){
         if(!this.coloredY.includes(j)) this.coloredY.push(j);
       }
     }
-    console.log(this.coloredX);
-    console.log(this.coloredY);
+  }
+
+  validCurrentShipPlacement(x: number, y:number){
+    for (let i = y; i < y + this.currentSizeX ; i++) {
+      for(let j = x; j < x + this.currentSizeY; j++){
+        let position = new ShipPosition();
+        position.gameId = this.currentGame.id;
+        position.shipId = this.currentShip.id;
+        position.userId = this.currentUser.id;
+        position.coordX = j;
+        position.coordY = i;
+        position.touche = false;
+        this.positions.push(position);
+      }
+    }
+    this.initColoredCells();
+    this.initCurrentShip();
+    if(this.areAllShipPlaced()){
+      this.openModal();
+    }
+  }
+
+  coordinatesInPositions(x: number, y:number) : boolean{
+    return (this.positions.find(pos => pos.coordX == x && pos.coordY == y) != null);
+  }
+
+  removeShipPositions(id: number){
+    this.positions = this.positions.filter(x => x.shipId != id);
+  }
+
+  isPlacedShip(id: number){
+    return (this.positions.find(x => x.shipId == id) != null);
+  }
+
+  areAllShipPlaced(){
+    let isOk = true;
+    for(let ship of this.ships) {
+      if(this.positions.find(x => x.shipId == ship.id) == null){
+        isOk = false;
+        break;
+      }
+    }
+    return isOk;
+  }
+
+  openModal(){
+    this.modalReference = this.modalService.open(this.modalcontent);
+  }
+
+  closeModal() {
+    this.modalReference.close();
+    this.cancelLastPlacement();
+  }
+
+  validateAllPositions(){
+    this.positionService.create(this.positions).then(
+      onsuccess => {
+        this.modalReference.close();
+        this.emitGame(onsuccess);
+      }
+    )
+  }
+
+  cancelLastPlacement(){
+    this.positions = this.positions.filter(x => x.shipId != this.currentShip.id);
+  }
+
+  emitGame(game: Game): void {
+    this.gameEmitter.emit(game);
   }
 
 }

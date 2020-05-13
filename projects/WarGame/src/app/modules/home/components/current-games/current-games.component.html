@@ -11,7 +11,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-8">
-                    Opponent : {{currentGame.player1Id == currentUser.id ? currentGame.player1Nickname : currentGame.player2Nickname}}
+                    Opponent : {{currentGame.player1Id == currentUser.id ? currentGame.player2Nickname : currentGame.player1Nickname}}
                 </div>
                 <div class="col-4"><a [routerLink]="['/game/']" [queryParams]="{id: currentGame.id}"><button class="btn btn-success">GO</button></a></div>
             </div>
