@@ -2,12 +2,16 @@
     <div class="col-md-12">
         <div *ngIf="game && game.stateId == gameState.waitingPlacements">
             <app-placement *ngIf="!currentUserPlacementOK(); else waitingOpponent" 
-                [currentGame]="game" 
-                (gameEmitter)="placementCompleted($event)">
+                [currentGame]="game"
+                [currentUser]="currentUser"
+                (gameEmitter)="placementCompleted($event)"
+                >
             </app-placement>
         </div>
         
-        <app-main-screen *ngIf="game && game.stateId == gameState.inProgress"></app-main-screen>
+        <app-main-screen *ngIf="game && game.stateId == gameState.inProgress" 
+        [currentUser]="currentUser"
+        [currentGame]="game"></app-main-screen>
     </div>
 </div>
 <ng-template #waitingOpponent>

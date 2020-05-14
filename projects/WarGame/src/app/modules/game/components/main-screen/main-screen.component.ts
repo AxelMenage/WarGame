@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { User, Game } from 'projects/WarGame/src/app/core/api/models';
 
 @Component({
   selector: 'app-main-screen',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main-screen.component.css']
 })
 export class MainScreenComponent implements OnInit {
+
+  @Input() currentUser: User;
+  @Input() currentGame: Game;
 
   constructor() { }
 

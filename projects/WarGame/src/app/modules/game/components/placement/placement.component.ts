@@ -20,9 +20,9 @@ export class PlacementComponent implements OnInit {
   coloredX: number[] = [];
   coloredY: number[] = [];
   placedShips: Ship[];
-  currentUser: User;
 
   @Input() currentGame: Game;
+  @Input() currentUser: User;
   @Output() gameEmitter = new EventEmitter<Game>();
 
   modalReference: NgbModalRef;
@@ -33,7 +33,6 @@ export class PlacementComponent implements OnInit {
     private positionService: PositionService) { }
 
   ngOnInit(): void {
-    this.currentUser = getCurrentUser();
     this.shipService.getAll().then(
       onsuccess => this.ships = onsuccess
     ).then(() => this.loading = false)

@@ -29,5 +29,9 @@ export const environment = {
 
   // --- Positions ---
   positionsUrl: 'position',
-  getPositionByUserAndGameUrl: 'position/getbyuserandgame'
+  getPositionByUserAndGameUrl: 'position/getbyuserandgame',
+
+  // --- Meessages ---
+  messagesUrl: 'message',
+  getMessagesUrl: 'message/game'
 };

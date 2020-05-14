@@ -1,0 +1,47 @@
+.chat-block{
+    height: 100%;
+}
+
+.chat-container{
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: relative;
+    border: 1px solid black;
+}
+
+.chat-container .chat-title{
+    background-color: white;
+    text-align: center;
+    padding-top: 8px;
+}
+
+.message-input{
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}
+
+.message-list{
+    overflow:auto;
+    max-height: 550px;
+}
+
+.msg-single{
+margin-top: 5px;
+ max-width: 95%;
+ border-radius: 5px;
+ padding: 4px;
+ clear: both;
+}
+
+.msg-from{
+    margin-right: 5px;
+    float: right;
+    background-color: lightgrey;
+}
+
+.msg-to{
+    margin-left: 5px;
+    float: left;
+    background-color: lightskyblue;
+}

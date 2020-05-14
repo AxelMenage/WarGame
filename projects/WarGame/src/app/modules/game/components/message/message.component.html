@@ -1,0 +1,24 @@
+<div class="row chat-block">
+    <div class="col-md-12 chat-container">
+        <div class="row">
+            <div class="col-md-12 chat-title">
+                <h4> Chat with {{currentGame.player1Id == currentUser.id ? currentGame.player2Nickname : currentGame.player1Nickname}}</h4>
+            </div>
+        </div>
+        <div class="row message-list">
+            <div class="col-md-12">
+                <div class="row msg-single d-block" [ngClass]="msg.userIdSender == currentUser.id ? 'msg-from' : 'msg-to'" *ngFor="let msg of messages">
+                    <div class="col-md-12">
+                        {{msg.content}}
+                        <br>
+                        <small class="time_date"> {{msg.date | date:'dd/LL hh:mm'}}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row message-input">
+            <input type="text" class="form-control" [value]="txtMessage" (input)="txtMessage=$event.target.value"
+                (keydown.enter)="sendMessage()" placeholder="Type a message here..." />
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+.shot-grid td, .shot-grid th{
+    width: 60px!important;
+    height: 60px!important;
+}
+
+.shot-grid th{
+    vertical-align: middle!important;
+    text-align: center!important;
+}
+
+.shot-grid td{
+    cursor: pointer;
+}
